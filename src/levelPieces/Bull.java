@@ -36,6 +36,8 @@ public class Bull extends GamePiece implements Moveable {
 					break;
 				}
 			}
+		} else {
+			return; //do nothing if char != 'R' or 'L'
 		}
 	}
 
