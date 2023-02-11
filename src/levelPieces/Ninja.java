@@ -30,12 +30,13 @@ public class Ninja extends GamePiece implements Moveable{
 	@Override
 	public InteractionResult interact(Drawable[] gameBoard, int playerLocation) {
 		int currLoca = this.getLocation();
-		// if player is far, throw darts to damage.
-		if (Math.abs(currLoca-playerLocation) <= 3) {
-			return InteractionResult.HIT;
-		// if player is close, execute
-		} else if(Math.abs(currLoca-playerLocation) <= 1) {
+		// if player is close, execute. 
+		// Since this condition is checked before the range, this interaction is short circuit over the other
+		if (Math.abs(currLoca-playerLocation) <= 1) {
 			return InteractionResult.KILL;
+		// if player is far, throw darts to damage.
+		} else if(Math.abs(currLoca-playerLocation) <= 3) {
+			return InteractionResult.HIT;
 		// if none, do nothing
 		} else {
 			return InteractionResult.NONE;
